@@ -55,10 +55,16 @@
             background: #1a1a1a;
             border: 1px solid #333;
             margin: 15px;
-            padding: 50px 20px;
+            padding: 0;
             text-align: center;
             border-radius: 8px;
             color: #666;
+            min-height: 0;
+            overflow: hidden;
+        }
+        .ad-banner:empty {
+            display: none;
+            margin: 0;
         }
         
         /* Category section */
@@ -164,10 +170,15 @@
     </script>
     -->
     
-    <!-- Ad Banner 1 -->
-    <div class="ad-banner" id="ad1">
-        📢 โฆษณา (Monetag Banner Placeholder)
-    </div>
+    <!-- Monetag In-Page Push Banner 1 -->
+    <div class="ad-banner" id="ad1"></div>
+    <script>
+        (function(d,z,s){
+            s.src='https://'+d+'/403/'+z;
+            s.async=true;
+            try{(document.getElementById('ad1')||document.body).appendChild(s)}catch(e){}
+        })('5gvci.com',11084399,document.createElement('script'));
+    </script>
     
     <!-- Channel Sections - Loaded from channels.json -->
     <div id="sports-thai" class="section">
@@ -175,10 +186,15 @@
         <div class="channel-grid" id="sports-thai-grid"></div>
     </div>
     
-    <!-- Ad Banner 2 -->
-    <div class="ad-banner" id="ad2">
-        📢 โฆษณา (Monetag Banner Placeholder)
-    </div>
+    <!-- Monetag In-Page Push Banner 2 -->
+    <div class="ad-banner" id="ad2"></div>
+    <script>
+        (function(d,z,s){
+            s.src='https://'+d+'/403/'+z;
+            s.async=true;
+            try{(document.getElementById('ad2')||document.body).appendChild(s)}catch(e){}
+        })('5gvci.com',11084399,document.createElement('script'));
+    </script>
     
     <div id="sports-intl" class="section">
         <div class="section-title">🌍 ช่องกีฬาต่างประเทศ</div>
