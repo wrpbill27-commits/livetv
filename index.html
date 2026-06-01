@@ -151,19 +151,28 @@
     
     <!-- Header -->
     <div class="header">
-        <h1>⚽ LIVE TV</h1>
-        <p>ดูบอลสด ดูทีวีออนไลน์ฟรี 24 ชั่วโมง · อัปเดตลิงก์ทุกวัน</p>
+        <h1>📺 LIVE TV</h1>
+        <p>ดูทีวีออนไลน์ฟรี 24 ชั่วโมง · อัปเดตลิงก์ทุกวัน</p>
     </div>
-    
-    <!-- Channel Sections - Loaded from channels.json -->
-    <div id="sports-thai" class="section">
-        <div class="section-title">🇹🇭 ช่องกีฬาไทย</div>
-        <div class="channel-grid" id="sports-thai-grid"></div>
+
+    <!-- 🔒 Sports Toggle -->
+    <div id="sports-toggle-bar" style="text-align:center;margin:20px 15px 5px;">
+        <button id="sports-toggle-btn" onclick="toggleSports()" style="
+            background:#1a1a2e;border:1px dashed #555;color:#888;padding:8px 20px;
+            border-radius:20px;cursor:pointer;font-size:0.85em;
+        ">🔒 แสดงช่องกีฬา</button>
     </div>
-    
-    <div id="sports-intl" class="section">
-        <div class="section-title">🌍 ช่องกีฬาต่างประเทศ</div>
-        <div class="channel-grid" id="sports-intl-grid"></div>
+
+    <!-- ⚽ Sports Container (hidden by default) -->
+    <div id="sports-container" style="display:none;">
+        <div id="sports-thai" class="section">
+            <div class="section-title">🇹🇭 ช่องกีฬาไทย</div>
+            <div class="channel-grid" id="sports-thai-grid"></div>
+        </div>
+        <div id="sports-intl" class="section">
+            <div class="section-title">🌍 ช่องกีฬาต่างประเทศ</div>
+            <div class="channel-grid" id="sports-intl-grid"></div>
+        </div>
     </div>
     
     <div id="entertainment" class="section">
@@ -211,6 +220,25 @@
                 e.preventDefault();
             }
         });
+        
+        // 🔒 Sports toggle
+        let sportsVisible = false;
+        function toggleSports() {
+            sportsVisible = !sportsVisible;
+            const container = document.getElementById('sports-container');
+            const btn = document.getElementById('sports-toggle-btn');
+            if (sportsVisible) {
+                container.style.display = 'block';
+                btn.innerHTML = '🔓 ซ่อนช่องกีฬา';
+                btn.style.borderColor = '#e94560';
+                btn.style.color = '#e94560';
+            } else {
+                container.style.display = 'none';
+                btn.innerHTML = '🔒 แสดงช่องกีฬา';
+                btn.style.borderColor = '#555';
+                btn.style.color = '#888';
+            }
+        }
         
         // Load channels and render
         fetch('channels.json')
