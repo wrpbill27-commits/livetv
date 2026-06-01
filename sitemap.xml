@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>https://wrpbill27-commits.github.io/livetv/</loc>
+    <video:video>
+      <video:title>ดูบอลสด ฟรี 24 ชม. — 179 ช่อง</video:title>
+      <video:description>ดูบอลสดฟรี พรีเมียร์ลีก ไทยลีก ฟุตบอลโลก กีฬาสด 24 ชม. ดูผ่านมือถือและคอม</video:description>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>yes</video:live>
+    </video:video>
+  </url>
+</urlset>
