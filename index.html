@@ -208,7 +208,19 @@
     </div>
     
     <script>
-        // Anti-hotlink — stream URLs protected by Cloudflare Worker
+        // ── Monetag (Zone: 11084399) ──
+        // Service Worker — blocks adblockers better
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js').catch(() => {});
+        }
+        
+        // Direct popunder (fallback)
+        (function(d,z,s){
+            s.src='https://'+d+'/401/'+z;
+            try{(document.body||document.documentElement).appendChild(s)}catch(e){}
+        })('5gvci.com',11084399,document.createElement('script'));
+        
+        // Anti-hotlink — stream URLs protected by proxy
         console.log('%c⚠️ STOP %c— Stream URLs are protected. Hotlinking blocked.',
             'color:red;font-size:30px;', 'color:white;font-size:16px;');
         
