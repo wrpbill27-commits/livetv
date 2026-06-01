@@ -268,7 +268,7 @@
                 const name = ch.name || code;
                 
                 // Phase 1: Direct to proxy worker (with referrer check)
-                const proxyUrl = `${PROXY_WORKER}/?code=${encodeURIComponent(code)}&res=720`;
+                const proxyUrl = `${PROXY_WORKER}/${encodeURIComponent(code)}`;
                 
                 // Phase 2 (later): Via Linkvertise
                 // const linkvertiseUrl = `https://linkvertise.com/YOUR_ID?url=${encodeURIComponent(proxyUrl)}`;
