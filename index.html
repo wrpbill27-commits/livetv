@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE TV - ดูบอลสด ดูทีวีออนไลน์ฟรี 24 ชม.</title>
+    <meta name="description" content="ดูบอลสดฟรี ดูทีวีออนไลน์ ถ่ายทอดสดกีฬา 24 ชั่วโมง ไม่มีโฆษณากวนใจ ติดตามช่อง Telegram">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Sarabun', sans-serif;
+            min-height: 100vh;
+        }
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #e94560;
+        }
+        .header h1 {
+            font-size: 2em;
+            color: #e94560;
+            text-shadow: 0 0 20px rgba(233,69,96,0.5);
+        }
+        .header p {
+            color: #aaa;
+            margin-top: 5px;
+            font-size: 0.9em;
+        }
+        
+        /* Telegram CTA - sticky top */
+        .telegram-banner {
+            background: linear-gradient(135deg, #0088cc, #006699);
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: pulse 2s infinite;
+        }
+        .telegram-banner a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .telegram-banner .icon { font-size: 1.3em; }
+        
+        /* Ad banner area */
+        .ad-banner {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            margin: 15px;
+            padding: 50px 20px;
+            text-align: center;
+            border-radius: 8px;
+            color: #666;
+        }
+        
+        /* Category section */
+        .section {
+            margin: 20px 15px;
+        }
+        .section-title {
+            background: #e94560;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        /* Channel grid */
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 8px;
+        }
+        .channel-btn {
+            background: #1a1a2e;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 12px 8px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            text-align: center;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+        .channel-btn:hover {
+            background: #e94560;
+            border-color: #e94560;
+            transform: scale(1.02);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 15px;
+            background: #111;
+            margin-top: 30px;
+            border-top: 1px solid #333;
+        }
+        .footer .telegram-cta {
+            background: #0088cc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .footer a {
+            color: #e94560;
+            text-decoration: none;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+        
+        /* Mobile */
+        @media (max-width: 600px) {
+            .channel-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .channel-btn {
+                font-size: 0.75em;
+                padding: 10px 5px;
+            }
+            .header h1 { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Telegram Sticky Banner -->
+    <div class="telegram-banner">
+        <a href="https://t.me/YOUR_CHANNEL" target="_blank">
+            <span class="icon">📱</span> 
+            ติดตามช่อง Telegram ดูก่อนใคร ไม่มีโฆษณา! กดเลย
+        </a>
+    </div>
+    
+    <!-- Header -->
+    <div class="header">
+        <h1>⚽ LIVE TV</h1>
+        <p>ดูบอลสด ดูทีวีออนไลน์ฟรี 24 ชั่วโมง · อัปเดตลิงก์ทุกวัน</p>
+    </div>
+    
+    <!-- Monetag Popunder - Replace YOUR_SITE_ID -->
+    <!-- 
+    <script type="text/javascript">
+        (function(d,z,s){
+            s.src='https://'+d+'/400/'+z;
+            try{(document.body||document.documentElement).appendChild(s)}catch(e){}
+        })('YOUR_MONETAG_DOMAIN','YOUR_SITE_ID',document.createElement('script'))
+    </script>
+    -->
+    
+    <!-- Ad Banner 1 -->
+    <div class="ad-banner" id="ad1">
+        📢 โฆษณา (Monetag Banner Placeholder)
+    </div>
+    
+    <!-- Channel Sections - Loaded from channels.json -->
+    <div id="sports-thai" class="section">
+        <div class="section-title">🇹🇭 ช่องกีฬาไทย</div>
+        <div class="channel-grid" id="sports-thai-grid"></div>
+    </div>
+    
+    <!-- Ad Banner 2 -->
+    <div class="ad-banner" id="ad2">
+        📢 โฆษณา (Monetag Banner Placeholder)
+    </div>
+    
+    <div id="sports-intl" class="section">
+        <div class="section-title">🌍 ช่องกีฬาต่างประเทศ</div>
+        <div class="channel-grid" id="sports-intl-grid"></div>
+    </div>
+    
+    <div id="entertainment" class="section">
+        <div class="section-title">📺 ช่องบันเทิง / ทั่วไป</div>
+        <div class="channel-grid" id="entertainment-grid"></div>
+    </div>
+    
+    <div id="news" class="section">
+        <div class="section-title">📰 ช่องข่าว</div>
+        <div class="channel-grid" id="news-grid"></div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <div class="telegram-cta">
+            <a href="https://t.me/YOUR_CHANNEL" target="_blank">
+                📱 ติดตามช่อง Telegram เพื่อดูบอลแบบไม่มีโฆษณา!
+            </a>
+        </div>
+        <p style="color:#666;font-size:0.8em;">
+            LIVE TV © 2026 · อัปเดตลิงก์ทุกวัน · <a href="#">ติดต่อเรา</a>
+        </p>
+    </div>
+    
+    <script>
+        // Load channels and render
+        fetch('channels.json')
+            .then(r => r.json())
+            .then(channels => {
+                // Categorize
+                const sportsThai = [], sportsIntl = [], entertainment = [], news = [];
+                const thaiSportsKeywords = ['true', 'bein', 'monomax', 'spotv', 'golf', 'one fc', '67 sport', 't sport', 'tsport'];
+                const intlSportsKeywords = ['tnt', 'sport tv', 'digi', 'mutv', 'lfc', 'skynet', 'astro', 'premier', 'sky sport', 'bt sport', 'dazn', 'espn', 'fox'];
+                const newsKeywords = ['cnn', 'bbc', 'bloomberg', 'sky news', 'nation', 'thairath', 'tnn', 'workpoint', 'thai pbs', 'nbt', 'mcot', 'voice'];
+                
+                channels.forEach(ch => {
+                    const name = (ch.name || '').toLowerCase();
+                    const code = (ch.code || '').toLowerCase();
+                    
+                    if (thaiSportsKeywords.some(k => name.includes(k) || code.includes(k))) {
+                        sportsThai.push(ch);
+                    } else if (intlSportsKeywords.some(k => name.includes(k) || code.includes(k))) {
+                        sportsIntl.push(ch);
+                    } else if (newsKeywords.some(k => name.includes(k) || code.includes(k))) {
+                        news.push(ch);
+                    } else {
+                        entertainment.push(ch);
+                    }
+                });
+                
+                renderGrid('sports-thai-grid', sportsThai);
+                renderGrid('sports-intl-grid', sportsIntl);
+                renderGrid('entertainment-grid', entertainment);
+                renderGrid('news-grid', news);
+            })
+            .catch(err => {
+                console.error('Failed to load channels:', err);
+                // Fallback: load from embedded data
+            });
+        
+        function renderGrid(gridId, channels) {
+            const grid = document.getElementById(gridId);
+            if (!channels.length) {
+                grid.innerHTML = '<p style="color:#666;grid-column:1/-1">กำลังโหลด...</p>';
+                return;
+            }
+            grid.innerHTML = channels.map(ch => {
+                // Linkvertise link (replace with your Linkvertise ID)
+                const streamUrl = encodeURIComponent(`https://lovetv.workers.dev/lx-staod9t4hsgr/${ch.code}_720/playlist.m3u8`);
+                const linkvertiseUrl = `https://linkvertise.com/YOUR_LINKVERTISE_ID?url=${streamUrl}`;
+                
+                return `<a href="${linkvertiseUrl}" class="channel-btn" target="_blank" rel="nofollow">
+                    ▶ ${ch.name || ch.code}
+                </a>`;
+            }).join('');
+        }
+    </script>
+</body>
+</html>
