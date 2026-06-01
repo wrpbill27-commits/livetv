@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>LIVE TV - ดูบอลสด ดูทีวีออนไลน์ฟรี 24 ชม.</title>
     <meta name="description" content="ดูบอลสดฟรี ดูทีวีออนไลน์ ถ่ายทอดสดกีฬา 24 ชั่วโมง ไม่มีโฆษณากวนใจ ติดตามช่อง Telegram">
     <style>
@@ -207,6 +208,17 @@
     </div>
     
     <script>
+        // Anti-hotlink — stream URLs protected by Cloudflare Worker
+        console.log('%c⚠️ STOP %c— Stream URLs are protected. Hotlinking blocked.',
+            'color:red;font-size:30px;', 'color:white;font-size:16px;');
+        
+        // Disable right-click on channel area
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.closest('.channel-btn') || e.target.closest('.channel-grid')) {
+                e.preventDefault();
+            }
+        });
+        
         // Load channels and render
         fetch('channels.json')
             .then(r => r.json())
@@ -242,6 +254,9 @@
                 // Fallback: load from embedded data
             });
         
+        // Proxy Worker URL — protects stream URLs from hotlinking
+        const PROXY_WORKER = 'https://putv-proxy.YOUR_SUBDOMAIN.workers.dev';
+        
         function renderGrid(gridId, channels) {
             const grid = document.getElementById(gridId);
             if (!channels.length) {
@@ -249,12 +264,17 @@
                 return;
             }
             grid.innerHTML = channels.map(ch => {
-                // Linkvertise link (replace with your Linkvertise ID)
-                const streamUrl = encodeURIComponent(`https://lovetv.workers.dev/lx-staod9t4hsgr/${ch.code}_720/playlist.m3u8`);
-                const linkvertiseUrl = `https://linkvertise.com/YOUR_LINKVERTISE_ID?url=${streamUrl}`;
+                const code = ch.code;
+                const name = ch.name || code;
                 
-                return `<a href="${linkvertiseUrl}" class="channel-btn" target="_blank" rel="nofollow">
-                    ▶ ${ch.name || ch.code}
+                // Phase 1: Direct to proxy worker (with referrer check)
+                const proxyUrl = `${PROXY_WORKER}/?code=${encodeURIComponent(code)}&res=720`;
+                
+                // Phase 2 (later): Via Linkvertise
+                // const linkvertiseUrl = `https://linkvertise.com/YOUR_ID?url=${encodeURIComponent(proxyUrl)}`;
+                
+                return `<a href="${proxyUrl}" class="channel-btn" target="_blank" rel="nofollow noopener">
+                    ▶ ${name}
                 </a>`;
             }).join('');
         }
